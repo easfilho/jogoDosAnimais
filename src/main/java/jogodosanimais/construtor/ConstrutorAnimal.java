@@ -1,6 +1,6 @@
 package jogodosanimais.construtor;
 
-import jogodosanimais.model.Animal;
+import jogodosanimais.modelo.Animal;
 
 public abstract class ConstrutorAnimal {
 	protected Animal animal;

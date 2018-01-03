@@ -1,7 +1,7 @@
 package jogodosanimais.fabrica;
 
 import jogodosanimais.construtor.ConstrutorAnimalAquatico;
-import jogodosanimais.model.AnimalAquatico;
+import jogodosanimais.modelo.AnimalAquatico;
 
 public class FabricaAnimalAquatico {
 	private FabricaAnimalAquatico() {

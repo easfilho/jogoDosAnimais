@@ -10,13 +10,13 @@ import cucumber.api.java.pt.Dado;
 import cucumber.api.java.pt.Então;
 import cucumber.api.java.pt.Quando;
 import jogodosanimais.enums.TipoAnimalEnum;
-import jogodosanimais.model.Animal;
-import jogodosanimais.service.AnimalService;
+import jogodosanimais.modelo.Animal;
+import jogodosanimais.servico.AnimalServico;
 
 public class PassosParaJogoDosAnimais {
 
 	private TipoAnimalEnum tipoAnimalSelecionado;
-	private AnimalService animalService;
+	private AnimalServico animalService;
 	private Animal animalTentouAdivinhar;
 	private String acaoSelecionda;
 	private Stack<Animal> pilhaAnimais;
@@ -24,7 +24,7 @@ public class PassosParaJogoDosAnimais {
 
 	@Before
 	public void prepararCenarios() {
-		animalService = new AnimalService();
+		animalService = new AnimalServico();
 	}
 
 	@Dado("^que a lista de opções tem somente os valores iniciais$")

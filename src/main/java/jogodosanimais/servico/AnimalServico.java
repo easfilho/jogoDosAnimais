@@ -1,4 +1,4 @@
-package jogodosanimais.service;
+package jogodosanimais.servico;
 
 import java.util.List;
 import java.util.Stack;
@@ -7,9 +7,9 @@ import java.util.stream.Collectors;
 import jogodosanimais.enums.TipoAnimalEnum;
 import jogodosanimais.fabrica.FabricaAnimalAquatico;
 import jogodosanimais.fabrica.FabricaAnimalTerrestre;
-import jogodosanimais.model.Animal;
+import jogodosanimais.modelo.Animal;
 
-public class AnimalService {
+public class AnimalServico {
 	public Stack<Animal> criarPilhaInicial() {
 		Stack<Animal> pilhaAnimais = new Stack<>();
 		pilhaAnimais.push(FabricaAnimalAquatico.criarAnimalAquaticoInicial());

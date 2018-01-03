@@ -1,6 +1,6 @@
 package jogodosanimais.construtor;
 
-import jogodosanimais.model.AnimalTerrestre;
+import jogodosanimais.modelo.AnimalTerrestre;
 
 public class ConstrutorAnimalTerrestre extends ConstrutorAnimal {
 	

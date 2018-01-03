@@ -1,7 +1,7 @@
 package jogodosanimais.fabrica;
 
 import jogodosanimais.construtor.ConstrutorAnimalTerrestre;
-import jogodosanimais.model.AnimalTerrestre;
+import jogodosanimais.modelo.AnimalTerrestre;
 
 public class FabricaAnimalTerrestre {
 	private FabricaAnimalTerrestre() {
