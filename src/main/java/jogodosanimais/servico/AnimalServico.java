@@ -18,42 +18,24 @@ public class AnimalServico {
 	}
 
 	public Animal tentarAdivinharAnimal(Stack<Animal> pilhaAnimais, TipoAnimalEnum tipoAnimalEnum, String acao) {
-		if (tipoAnimalEnum.tipoAnimalAquatico()) {
-			return tentarAdivinharAnimalAquatico(pilhaAnimais, acao);
-		}
-		return tentarAdivinharAnimalTerrestre(pilhaAnimais, acao);
+		List<Animal> listaAnimais = pilhaAnimais.stream().filter(x -> x.getTipoAnimalEnum().equals(tipoAnimalEnum))
+				.collect(Collectors.toList());
+		return consultarAnimalPelaAcao(acao, listaAnimais);
 	}
 
-	private Animal tentarAdivinharAnimalAquatico(Stack<Animal> pilhaAnimais, String acao) {
-		List<Animal> listaAnimaisAquaticos = pilhaAnimais.stream().filter(x -> x.animalAquatico())
-				.collect(Collectors.toList());
-		return consultarAnimalPelaAcao(acao, listaAnimaisAquaticos);
-	}
-	
-	private Animal tentarAdivinharAnimalTerrestre(Stack<Animal> pilhaAnimais, String acao) {
-		List<Animal> listaAnimaisTerrestres = pilhaAnimais.stream().filter(x -> !x.animalAquatico())
-				.collect(Collectors.toList());
-		
-		return consultarAnimalPelaAcao(acao, listaAnimaisTerrestres);
-	}
-
-	private Animal consultarAnimalPelaAcao(String acao, List<Animal> listaAnimaisTerrestres) {
+	private Animal consultarAnimalPelaAcao(String acao, List<Animal> listaAnimais) {
 		int i;
-		for (i = 0; i < listaAnimaisTerrestres.size() - 1; i++) {
-			if (listaAnimaisTerrestres.get(i).possuiAcao(acao)) {
-				return listaAnimaisTerrestres.get(i);
+		for (i = 0; i < listaAnimais.size() - 1; i++) {
+			if (listaAnimais.get(i).possuiAcao(acao)) {
+				return listaAnimais.get(i);
 			}
 		}
-		return listaAnimaisTerrestres.get(i);
+		return listaAnimais.get(i);
 	}
 
 	public List<String> listarAcoesAnimais(Stack<Animal> pilhaAnimais, TipoAnimalEnum tipoAnimalEnum) {
-		if (tipoAnimalEnum.tipoAnimalAquatico()) {
-			return pilhaAnimais.stream().filter(x -> x.animalAquatico() && !x.possuiAcao("")).map(Animal::getAcao)
-					.collect(Collectors.toList());
-		}
-		return pilhaAnimais.stream().filter(x -> !x.animalAquatico() && !x.possuiAcao("")).map(Animal::getAcao)
-				.collect(Collectors.toList());
+		return pilhaAnimais.stream().filter(x -> x.getTipoAnimalEnum().equals(tipoAnimalEnum) && !x.possuiAcao(""))
+				.map(Animal::getAcao).collect(Collectors.toList());
 	}
 
 	public void adicionarAnimal(String nome, String acao, TipoAnimalEnum tipoAnimalEnum, Stack<Animal> pilhaAnimais) {

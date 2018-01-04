@@ -1,8 +1,15 @@
 package jogodosanimais.modelo;
 
+import jogodosanimais.enums.TipoAnimalEnum;
+
 public abstract class Animal {
 	private String nome;
 	private String acao;
+	protected TipoAnimalEnum tipoAnimalEnum;
+
+	public Animal() {
+
+	}
 
 	public String getNome() {
 		return nome;
@@ -20,15 +27,15 @@ public abstract class Animal {
 		this.acao = acao;
 	}
 
-	public boolean animalAquatico() {
-		return this.getClass().equals(AnimalAquatico.class);
-	}
-
 	public boolean possuiAcao(String acao) {
 		return this.acao.equals(acao);
 	}
 
 	public boolean possuiNome(String nome) {
 		return this.nome.equals(nome);
+	}
+
+	public TipoAnimalEnum getTipoAnimalEnum() {
+		return tipoAnimalEnum;
 	}
 }
