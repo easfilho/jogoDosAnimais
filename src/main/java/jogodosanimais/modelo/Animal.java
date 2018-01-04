@@ -8,7 +8,7 @@ public abstract class Animal {
 	protected TipoAnimalEnum tipoAnimalEnum;
 
 	public Animal() {
-
+		inicializarTipoAnimal();
 	}
 
 	public String getNome() {
@@ -38,4 +38,6 @@ public abstract class Animal {
 	public TipoAnimalEnum getTipoAnimalEnum() {
 		return tipoAnimalEnum;
 	}
+	
+	protected abstract void inicializarTipoAnimal();
 }

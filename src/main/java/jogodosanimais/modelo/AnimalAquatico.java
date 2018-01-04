@@ -4,8 +4,8 @@ import jogodosanimais.enums.TipoAnimalEnum;
 
 public class AnimalAquatico extends Animal {
 
-	public AnimalAquatico() {
-		super();
+	@Override
+	protected void inicializarTipoAnimal() {
 		super.tipoAnimalEnum = TipoAnimalEnum.AQUATICO;
 	}
 }

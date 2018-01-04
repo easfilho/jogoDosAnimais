@@ -3,8 +3,9 @@ package jogodosanimais.modelo;
 import jogodosanimais.enums.TipoAnimalEnum;
 
 public class AnimalTerrestre extends Animal {
-	public AnimalTerrestre() {
-		super();
+
+	@Override
+	protected void inicializarTipoAnimal() {
 		super.tipoAnimalEnum = TipoAnimalEnum.TERRESTRE;
 	}
 }
