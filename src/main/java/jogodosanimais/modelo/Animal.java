@@ -5,6 +5,7 @@ import jogodosanimais.enums.TipoAnimalEnum;
 public abstract class Animal {
 	private String nome;
 	private String acao;
+	private Integer ordem;
 	protected TipoAnimalEnum tipoAnimalEnum;
 
 	public Animal() {
@@ -38,6 +39,14 @@ public abstract class Animal {
 	public TipoAnimalEnum getTipoAnimalEnum() {
 		return tipoAnimalEnum;
 	}
-	
+
 	protected abstract void inicializarTipoAnimal();
+
+	public Integer getOrdem() {
+		return ordem;
+	}
+
+	public void setOrdem(Integer ordem) {
+		this.ordem = ordem;
+	}
 }

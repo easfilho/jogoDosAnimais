@@ -1,7 +1,6 @@
 package JogoDosAnimais.JogoDosAnimais;
 
 import java.util.List;
-import java.util.Stack;
 
 import org.junit.Assert;
 
@@ -19,7 +18,7 @@ public class PassosParaJogoDosAnimais {
 	private AnimalServico animalService;
 	private Animal animalTentouAdivinhar;
 	private String acaoSelecionda;
-	private Stack<Animal> pilhaAnimais;
+	private List<Animal> listaAnimais;
 	private List<String> listaAcoesAdicionadas;
 
 	@Before
@@ -29,7 +28,7 @@ public class PassosParaJogoDosAnimais {
 
 	@Dado("^que a lista de opções tem somente os valores iniciais$")
 	public void que_a_lista_de_opções_tem_somente_os_valores_iniciais() throws Throwable {
-		pilhaAnimais = animalService.criarPilhaInicial();
+		listaAnimais = animalService.criarListaInicial();
 	}
 
 	@Dado("^que seleciono que animal vive água$")
@@ -40,7 +39,7 @@ public class PassosParaJogoDosAnimais {
 	@Dado("^que informo que o animal que estava pensando tem nome \"([^\"]*)\" que faz \"([^\"]*)\" do tipo \"([^\"]*)\"$")
 	public void que_informo_que_o_animal_que_estava_pensando_tem_nome_que_faz_do_tipo(String nome, String acao,
 			TipoAnimalEnum tipoAnimalEnum) throws Throwable {
-		animalService.adicionarAnimal(nome, acao, tipoAnimalEnum, pilhaAnimais);
+		animalService.adicionarAnimal(nome, acao, tipoAnimalEnum, listaAnimais);
 	}
 	
 	@Dado("^que informo a ação \"([^\"]*)\"$")
@@ -55,12 +54,12 @@ public class PassosParaJogoDosAnimais {
 
 	@Quando("^verificar qual animal estou pensando$")
 	public void verificar_qual_animal_estou_pensando() throws Throwable {
-		animalTentouAdivinhar = animalService.tentarAdivinharAnimal(pilhaAnimais, tipoAnimalSelecionado, acaoSelecionda);
+		animalTentouAdivinhar = animalService.tentarAdivinharAnimal(listaAnimais, tipoAnimalSelecionado, acaoSelecionda);
 	}
 
 	@Quando("^mostrar as opções de ações$")
 	public void mostrar_as_opções_de_ações() throws Throwable {
-		listaAcoesAdicionadas = animalService.listarAcoesAnimais(pilhaAnimais, tipoAnimalSelecionado);
+		listaAcoesAdicionadas = animalService.listarAcoesAnimais(listaAnimais, tipoAnimalSelecionado);
 	}
 
 	@Então("^deve mostra a opção \"([^\"]*)\"$")

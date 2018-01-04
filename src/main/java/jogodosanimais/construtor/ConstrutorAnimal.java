@@ -15,6 +15,11 @@ public abstract class ConstrutorAnimal {
 		return this;
 	}
 	
+	public ConstrutorAnimal comOrdem(Integer ordem) {
+		animal.setOrdem(ordem);
+		return this;
+	}
+	
 	public Animal criar() {
 		return this.animal;
 	}

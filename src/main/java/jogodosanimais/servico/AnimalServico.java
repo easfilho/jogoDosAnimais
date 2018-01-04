@@ -1,5 +1,6 @@
 package jogodosanimais.servico;
 
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Stack;
 import java.util.stream.Collectors;
@@ -10,17 +11,18 @@ import jogodosanimais.fabrica.FabricaAnimalTerrestre;
 import jogodosanimais.modelo.Animal;
 
 public class AnimalServico {
-	public Stack<Animal> criarPilhaInicial() {
-		Stack<Animal> pilhaAnimais = new Stack<>();
-		pilhaAnimais.push(FabricaAnimalAquatico.criarAnimalAquaticoInicial());
-		pilhaAnimais.push(FabricaAnimalTerrestre.criarAnimalTerrestreInicial());
-		return pilhaAnimais;
+	public List<Animal> criarListaInicial() {
+		List<Animal> listaAnimais = new LinkedList<>();
+		listaAnimais.add(FabricaAnimalAquatico.criarAnimalAquaticoInicial());
+		listaAnimais.add(FabricaAnimalTerrestre.criarAnimalTerrestreInicial());
+		return listaAnimais;
 	}
 
-	public Animal tentarAdivinharAnimal(Stack<Animal> pilhaAnimais, TipoAnimalEnum tipoAnimalEnum, String acao) {
-		List<Animal> listaAnimais = pilhaAnimais.stream().filter(x -> x.getTipoAnimalEnum().equals(tipoAnimalEnum))
+	public Animal tentarAdivinharAnimal(List<Animal> listaAnimais, TipoAnimalEnum tipoAnimalEnum, String acao) {
+		List<Animal> listaAnimaisParaTentarAcertar = listaAnimais.stream().filter(x -> x.getTipoAnimalEnum().equals(tipoAnimalEnum))
+				.sorted((f1, f2) -> Integer.compare(f2.getOrdem(), f1.getOrdem()))
 				.collect(Collectors.toList());
-		return consultarAnimalPelaAcao(acao, listaAnimais);
+		return consultarAnimalPelaAcao(acao, listaAnimaisParaTentarAcertar);
 	}
 
 	private Animal consultarAnimalPelaAcao(String acao, List<Animal> listaAnimais) {
@@ -33,16 +35,17 @@ public class AnimalServico {
 		return listaAnimais.get(i);
 	}
 
-	public List<String> listarAcoesAnimais(Stack<Animal> pilhaAnimais, TipoAnimalEnum tipoAnimalEnum) {
-		return pilhaAnimais.stream().filter(x -> x.getTipoAnimalEnum().equals(tipoAnimalEnum) && !x.possuiAcao(""))
+	public List<String> listarAcoesAnimais(List<Animal> listaAnimais, TipoAnimalEnum tipoAnimalEnum) {
+		return listaAnimais.stream().filter(x -> x.getTipoAnimalEnum().equals(tipoAnimalEnum) && !x.possuiAcao(""))
+				.sorted((f1, f2) -> Integer.compare(f1.getOrdem(), f2.getOrdem()))
 				.map(Animal::getAcao).collect(Collectors.toList());
 	}
 
-	public void adicionarAnimal(String nome, String acao, TipoAnimalEnum tipoAnimalEnum, Stack<Animal> pilhaAnimais) {
+	public void adicionarAnimal(String nome, String acao, TipoAnimalEnum tipoAnimalEnum, List<Animal> listaAnimais) {
 		if (tipoAnimalEnum.tipoAnimalAquatico()) {
-			pilhaAnimais.push(FabricaAnimalAquatico.criar(nome, acao));
+			listaAnimais.add(FabricaAnimalAquatico.criar(nome, acao, listaAnimais.size() + 1));
 		} else {
-			pilhaAnimais.push(FabricaAnimalTerrestre.criar(nome, acao));
+			listaAnimais.add(FabricaAnimalTerrestre.criar(nome, acao, listaAnimais.size() + 1));
 		}
 	}
 }

@@ -12,13 +12,15 @@ public class FabricaAnimalTerrestre {
 		return (AnimalTerrestre) new ConstrutorAnimalTerrestre()
 				.comNome("Macaco")
 				.queFazAcao("")
+				.comOrdem(2)
 				.criar();
 	}
 	
-	public static AnimalTerrestre criar(String nome, String acao) {
+	public static AnimalTerrestre criar(String nome, String acao, Integer ordem) {
 		return (AnimalTerrestre) new ConstrutorAnimalTerrestre()
 				.comNome(nome)
 				.queFazAcao(acao)
+				.comOrdem(ordem)
 				.criar();
 	}
 }
