@@ -3,7 +3,7 @@ sudo: false
 install: true
 
 addons:
-  sonarqube: true
+  sonarcloud: true
 
 env:
   global:
