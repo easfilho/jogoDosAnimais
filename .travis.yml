@@ -13,7 +13,7 @@ jdk:
   - oraclejdk8
 
 script:
-  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent package sonar:sonar -Dsonar.login=$SONAR_TOKEN
+  - mvn clean verify
 
 cache:
   directories:
