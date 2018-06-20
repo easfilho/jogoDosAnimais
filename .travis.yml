@@ -12,9 +12,9 @@ jdk:
 
 script:
   - mvn clean verify mvn sonar:sonar \
-  -Dsonar.organization=easfilho-github \
-  -Dsonar.host.url=https://sonarcloud.io \
-  -Dsonar.login=e96862a3f4eb71062d648c1e9d22ccdc8b342e7b
+  - Dsonar.organization=easfilho-github \
+  - Dsonar.host.url=https://sonarcloud.io \
+  - Dsonar.login=e96862a3f4eb71062d648c1e9d22ccdc8b342e7b
 
 cache:
   directories:
@@ -23,3 +23,5 @@ cache:
 
 notifications:
   email: false
+
+#Travis maldito
