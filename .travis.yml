@@ -4,7 +4,6 @@ install: true
 
 addons:
   sonarcloud:
-    organization: "sonarcloud"
     token:
       secure: "e96862a3f4eb71062d648c1e9d22ccdc8b342e7b"
 
@@ -13,7 +12,7 @@ jdk:
   - oraclejdk8
 
 script:
-  - mvn clean verify sonar-scanner
+  - mvn clean verify
 
 cache:
   directories:
