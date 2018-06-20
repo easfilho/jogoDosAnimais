@@ -2,10 +2,10 @@ language: java
 sudo: false
 install: true
 
-addons:
-  sonarcloud:
-    token:
-      secure: "e96862a3f4eb71062d648c1e9d22ccdc8b342e7b"
+mvn sonar:sonar \
+  -Dsonar.organization=easfilho-github \
+  -Dsonar.host.url=https://sonarcloud.io \
+  -Dsonar.login=9e8facc208af20cde90eaf10544d54d293dae145
 
 
 jdk:
