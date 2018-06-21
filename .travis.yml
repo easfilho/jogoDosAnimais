@@ -1,27 +1,10 @@
 language: java
 sudo: false
-install: true
-
- addons:
-   sonarcloud:
-     token:
-       secure: "e96862a3f4eb71062d648c1e9d22ccdc8b342e7b"
-
-jdk:
-  - oraclejdk8
-
+dist: trusty
+addons:
+  sonarcloud:
+    token:
+      secure: ab085de1535abc5290210c31884eca8a8f835c34 # encrypted value of your token
 script:
-  - mvn clean verify mvn sonar:sonar \
-  - Dsonar.organization=easfilho-github \
-  - Dsonar.host.url=https://sonarcloud.io \
-  - Dsonar.login=e96862a3f4eb71062d648c1e9d22ccdc8b342e7b
-
-cache:
-  directories:
-    - '$HOME/.m2/repository'
-    - '$HOME/.sonar/cache'
-
-notifications:
-  email: false
-
-#Travis maldito
+  # the following command line builds the project, runs the tests with coverage and then execute the SonarCloud analysis
+  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar
